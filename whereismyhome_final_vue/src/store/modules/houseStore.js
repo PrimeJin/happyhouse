@@ -1,10 +1,11 @@
-import { sidoList, gugunList, houseList } from "@/api/house.js";
+import { sidoList, gugunList, dongList, houseList } from "@/api/house.js";
 
 const houseStore = {
   namespaced: true,
   state: {
     sidos: [{ value: null, text: "선택하세요" }],
     guguns: [{ value: null, text: "선택하세요" }],
+    dongs: [{ value: null, text: "선택하세요" }],
     houses: [],
     house: null,
   },
@@ -15,6 +16,9 @@ const houseStore = {
     },
     CLEAR_GUGUN_LIST(state) {
       state.guguns = [{ value: null, text: "선택하세요" }];
+    },
+    CLEAR_DONG_LIST(state) {
+      state.dongs = [{ value: null, text: "선택하세요" }];
     },
     CLEAR_APT_LIST(state) {
       state.houses = [];
@@ -30,10 +34,18 @@ const houseStore = {
         state.guguns.push({ value: gugun.gugunCode, text: gugun.gugunName });
       });
     },
+    SET_DONG_LIST(state, dongs) {
+      dongs.forEach((dong) => {
+        state.dongs.push({ value: dong.dongCode, text: dong.dongName });
+      });
+    },
     SET_HOUSE_LIST(state, houses) {
       state.houses = houses;
     },
     SET_DETAIL_HOUSE(state, house) {
+      state.house = house;
+    },
+    SET_MARKER_HOUSE(state, house) {
       state.house = house;
     },
   },
@@ -60,17 +72,27 @@ const houseStore = {
         }
       );
     },
-    getHouseList: ({ commit }, gugunCode) => {
-      const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
+    getDong: ({ commit }, gugunCode) => {
+      const params = { gugun: gugunCode };
+      dongList(
+        params,
+        ({ data }) => {
+          commit("SET_DONG_LIST", data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    getHouseList: ({ commit }, dongCode) => {
+      //const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
       const params = {
-        LAWD_CD: gugunCode,
-        DEAL_YMD: "202207",
-        serviceKey: decodeURIComponent(SERVICE_KEY),
+        dong: dongCode,
       };
       houseList(
         params,
         ({ data }) => {
-          commit("SET_HOUSE_LIST", data.response.body.items.item);
+          commit("SET_HOUSE_LIST", data);
         },
         (error) => {
           console.log(error);
@@ -78,8 +100,10 @@ const houseStore = {
       );
     },
     detailHouse: ({ commit }, house) => {
-      // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_HOUSE", house);
+    },
+    detailMarkerHouse: ({ commit }, house) => {
+      commit("SET_MARKER_HOUSE", house);
     },
   },
 };

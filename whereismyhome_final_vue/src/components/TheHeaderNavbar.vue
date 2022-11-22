@@ -21,10 +21,10 @@
               <b-icon icon="house-door" animation="fade" font-scale="2"></b-icon>
               메인
             </router-link>
-            <router-link :to="{ name: 'insta' }" class="m-2 link">
+            <!-- <router-link :to="{ name: 'insta' }" class="m-2 link">
               <b-icon icon="instagram" animation="fade" font-scale="2"></b-icon>
               인스타그램
-            </router-link>
+            </router-link> -->
             <router-link :to="{ name: 'board' }" class="m-2 link">
               <b-icon icon="journal" animation="fade" font-scale="2"></b-icon>
               게시판
@@ -90,14 +90,7 @@ export default {
     ...mapActions(memberStore, ["userLogout"]),
     // ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     onClickLogout() {
-      // this.SET_IS_LOGIN(false);
-      // this.SET_USER_INFO(null);
-      // sessionStorage.removeItem("access-token");
-      // if (this.$route.path != "/") this.$router.push({ name: "main" });
       console.log(this.userInfo.userid);
-      //vuex actions에서 userLogout 실행(Backend에 저장 된 리프레시 토큰 없애기
-      //+ satate에 isLogin, userInfo 정보 변경)
-      // this.$store.dispatch("userLogout", this.userInfo.userid);
       this.userLogout(this.userInfo.userid);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
       sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- name space는 UserRepo의 fully qualified name으로 설정한다. -->
+<mapper namespace="com.ssafy.happy.model.dao.UserDao">
+	<insert id="insert" parameterType="User">
+		insert into user (userid, password, name)
+		values(#{userid}, #{password}, #{name})
+	</insert>
+
+	<update id="update" parameterType="User">
+		update user set password=#{password}, name=#{name} 
+		where userid=#{userid}
+	</update>
+
+	<delete id="delete" parameterType="string">
+		delete from user
+		where userid=#{userid}
+	</delete>
+
+	<select id="selectByUserid" parameterType="string" resultType="User">
+		select userid, password, name 
+		from user
+		where userid=#{userid}
+	</select>
+	
+	<select id="getRefreshToken" parameterType="string" resultType="string">
+		select authtoken
+		from user
+		where userid=#{userid}
+	</select>
+	
+	<update id="saveRefreshToken" parameterType="map">
+		update user
+		set authtoken=#{authtoken}
+		where userid=#{userid}
+	</update>
+	
+	<update id="deleteRefreshToken" parameterType="map">
+		update user
+		set authtoken = #{authtoken, jdbcType=VARCHAR}
+		where userid=#{userid}
+	</update>
+</mapper>

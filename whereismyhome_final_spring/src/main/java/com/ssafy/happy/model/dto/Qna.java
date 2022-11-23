@@ -4,18 +4,20 @@ public class Qna {
 	private int qnano;
 	private String qnasubject;
 	private String qnacontent;
-	private String qnadate;
+	private String regtime;
+	private int hit;
 	private String userid;
 	
 	public Qna() {
 	}
 
-	public Qna(int qnano, String qnasubject, String qnacontent, String qnadate, String userid) {
+	public Qna(int qnano, String qnasubject, String qnacontent, String regtime, int hit, String userid) {
 		super();
 		this.qnano = qnano;
 		this.qnasubject = qnasubject;
 		this.qnacontent = qnacontent;
-		this.qnadate = qnadate;
+		this.regtime = regtime;
+		this.hit = hit;
 		this.userid = userid;
 	}
 
@@ -43,12 +45,20 @@ public class Qna {
 		this.qnacontent = qnacontent;
 	}
 
-	public String getQnadate() {
-		return qnadate;
+	public String getRegtime() {
+		return regtime;
 	}
 
-	public void setQnadate(String qnadate) {
-		this.qnadate = qnadate;
+	public void setRegtime(String regtime) {
+		this.regtime = regtime;
+	}
+
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 
 	public String getUserid() {
@@ -61,8 +71,8 @@ public class Qna {
 
 	@Override
 	public String toString() {
-		return "Qna [qnano=" + qnano + ", qnasubject=" + qnasubject + ", qnacontent=" + qnacontent + ", qnadate="
-				+ qnadate + ", userid=" + userid + "]";
+		return "Qna [qnano=" + qnano + ", qnasubject=" + qnasubject + ", qnacontent=" + qnacontent + ", regtime="
+				+ regtime + ", hit=" + hit + ", userid=" + userid + "]";
 	}
-	
+
 }

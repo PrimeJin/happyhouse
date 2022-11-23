@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.ssafy.happy.model.dao.QnaDao;
 import com.ssafy.happy.model.dto.BoardParameterDto;
 import com.ssafy.happy.model.dto.Qna;
+import com.ssafy.happy.model.dto.QnaReply;
 import com.ssafy.happy.util.PageNavigation;
 
 @Service
@@ -68,6 +69,16 @@ public class QnaServiceImpl implements QnaService {
 	@Override
 	public int deleteQna(int qnano) {
 		return qnaDao.deleteQna(qnano);
+	}
+
+	@Override
+	public int writeQnaReply(QnaReply qnaReply) {
+		return qnaDao.writeQnaReply(qnaReply);
+	}
+
+	@Override
+	public List<QnaReply> listQnaReply(int qnano) {
+		return qnaDao.listQnaReply(qnano);
 	}
 	
 }

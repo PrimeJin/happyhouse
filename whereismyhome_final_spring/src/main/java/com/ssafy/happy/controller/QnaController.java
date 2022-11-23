@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happy.model.dto.BoardParameterDto;
+import com.ssafy.happy.model.dto.QnaReply;
 import com.ssafy.happy.model.dto.Qna;
 import com.ssafy.happy.service.QnaService;
 
@@ -52,6 +53,7 @@ public class QnaController {
 		logger.info("writeArticle - 호출");
 		Map<String, Object> map = new HashMap<>();
 		
+		logger.info("Qna: "+qna);
 		if (qnaService.writeQna(qna) == 1) {
 			map.put("message", "success");
 			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
@@ -61,7 +63,7 @@ public class QnaController {
 		}
 	}
 	
-	@ApiOperation(value = "게시판 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = Qna.class)
+	@ApiOperation(value = "Qna 글보기", notes = "글번호에 해당하는 게시글의 정보를 반환한다.", response = Qna.class)
 	@GetMapping("/{qnano}")
 	public ResponseEntity<Qna> getArticle(@PathVariable("qnano") @ApiParam(value = "얻어올 글의 글번호.", required = true) int qnano) throws Exception {
 		logger.info("getArticle - 호출 : " + qnano);
@@ -69,7 +71,7 @@ public class QnaController {
 		return new ResponseEntity<Qna>(qnaService.getQna(qnano), HttpStatus.OK);
 	}
 	
-	@ApiOperation(value = "게시판 글수정", notes = "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "Qna 글수정", notes = "수정할 게시글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@PutMapping
 	public ResponseEntity<?> modifyArticle(@RequestBody @ApiParam(value = "수정할 글정보.", required = true) Qna qna) throws Exception {
 		logger.info("modifyArticle - 호출 {}", qna);
@@ -84,7 +86,7 @@ public class QnaController {
 		}
 	}
 	
-	@ApiOperation(value = "게시판 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@ApiOperation(value = "Qna 글삭제", notes = "글번호에 해당하는 게시글의 정보를 삭제한다. 그리고 DB삭제 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
 	@DeleteMapping("/{qnano}")
 	public ResponseEntity<?> deleteArticle(@PathVariable("qnano") @ApiParam(value = "살제할 글의 글번호.", required = true) int qnano) throws Exception {
 		logger.info("deleteArticle - 호출");
@@ -97,5 +99,32 @@ public class QnaController {
 		return new ResponseEntity<Map<String, Object>>(map, HttpStatus.NO_CONTENT);
 	}
 	
+	@ApiOperation(value = "Qna 답변 작성", notes = "답변을 작성한다. 그리고 DB입력 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
+	@PostMapping("/{qnano}/reply")
+	public ResponseEntity<?> writeQnaReply(@PathVariable("qnano") int qnano, @RequestBody @ApiParam(value = "게시글 정보.", required = true) QnaReply qnaReply) throws Exception {
+		
+		System.out.println(qnaReply);
+		System.out.println(qnano);
+		
+		logger.info("writeQnaReply - 호출");
+		Map<String, Object> map = new HashMap<>();
+		
+		qnaReply.setQnano(qnano);  //Question의 글번호 답글에 설정
+		logger.info("QnaReply: "+qnaReply);
+		if (qnaService.writeQnaReply(qnaReply) == 1) {
+			map.put("message", "success");
+			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+		} else {
+			map.put("message", "fail");
+			return new ResponseEntity<Map<String, Object>>(map, HttpStatus.NO_CONTENT);
+		}
+	}
+	
+	@ApiOperation(value = "Qna 답글 목록", notes = "답글 정보를 반환한다.", response = List.class)
+	@GetMapping("/{qnano}/reply")
+	public ResponseEntity<List<QnaReply>> listQnaReply(@PathVariable("qnano") int qnano) throws Exception {
+		logger.info("listQnaReply - 호출");
+		return new ResponseEntity<List<QnaReply>>(qnaService.listQnaReply(qnano), HttpStatus.OK);
+	}
 	
 }

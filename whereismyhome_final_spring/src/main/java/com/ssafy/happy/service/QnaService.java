@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ssafy.happy.model.dto.BoardParameterDto;
 import com.ssafy.happy.model.dto.Qna;
+import com.ssafy.happy.model.dto.QnaReply;
 import com.ssafy.happy.util.PageNavigation;
 
 public interface QnaService {
@@ -17,4 +18,6 @@ public interface QnaService {
 	public int modifyQna(Qna qna);
 	public int deleteQna(int qnano);
 
+	public int writeQnaReply(QnaReply qnaReply);
+	public List<QnaReply> listQnaReply(int qnano);
 }

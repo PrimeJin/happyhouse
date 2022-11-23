@@ -19,7 +19,7 @@
 	</delete>
 
 	<select id="selectByUserid" parameterType="string" resultType="User">
-		select userid, password, name 
+		select userid, password, name, role
 		from user
 		where userid=#{userid}
 	</select>

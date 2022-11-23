@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.happy.model.dao.HouseDao;
 import com.ssafy.happy.model.dto.House;
+import com.ssafy.happy.model.dto.SearchList;
 import com.ssafy.happy.model.dto.SidoGugunCode;
 
 @Service
@@ -33,6 +34,11 @@ public class HouseServiceImpl implements HouseService {
 	@Override
 	public List<House> getAptInDong(String dong) throws Exception {
 		return sqlSession.getMapper(HouseDao.class).getAptInDong(dong);
+	}
+
+	@Override
+	public List<SearchList> getSearchList(String keyword) throws Exception {
+		return sqlSession.getMapper(HouseDao.class).getSearchList(keyword);
 	}
 
 }

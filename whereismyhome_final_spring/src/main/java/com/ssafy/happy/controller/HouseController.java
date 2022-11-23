@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.happy.model.dto.House;
+import com.ssafy.happy.model.dto.SearchList;
 import com.ssafy.happy.model.dto.SidoGugunCode;
 import com.ssafy.happy.service.HouseService;
 
@@ -105,5 +106,10 @@ public class HouseController {
 	@GetMapping("/apt")
 	public ResponseEntity<List<House>> apt(@RequestParam("dong") String dong) throws Exception {
 		return new ResponseEntity<List<House>>(haHouseService.getAptInDong(dong), HttpStatus.OK);
+	}
+	
+	@GetMapping("/search")
+	public ResponseEntity<List<SearchList>> keyword(@RequestParam("keyword") String keyword) throws Exception {
+		return new ResponseEntity<List<SearchList>>(haHouseService.getSearchList(keyword), HttpStatus.OK);
 	}
 }

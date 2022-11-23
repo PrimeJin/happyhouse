@@ -34,4 +34,12 @@
 		where dongCode = #{dong} 
 		order by aptName
 	</select>
+	
+	<select id="getSearchList" parameterType="string" resultType="SearchList">
+		select addr.sidoName, addr.gugunName, addr.dongCode, addr.dongName, addr.totalName
+	    from (select *,concat(sidoName, ' ' , gugunName, ' ' , dongName) totalName from dongcode) as addr
+	    WHERE totalName like concat('%', #{keyword}, '%')
+	    order by addr.totalName
+	    limit 5
+	</select>
 </mapper>

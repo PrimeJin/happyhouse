@@ -162,5 +162,12 @@
   };
   </script>
   
-  <style></style>
+  <style scoped>
+  button {
+    color: #FCFAF1;
+    background-color: #5F403B;
+    border-block-color: #5F403B;
+    width: 10%;
+  }  
+  </style>
   

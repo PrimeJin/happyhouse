@@ -148,6 +148,11 @@ const routes = [
       },
     ],
   },
+  {
+    path: "/checklist",
+    name: "checklist",
+    component: () => import("@/views/AppChecklist"),
+  },
 ];
 
 const router = new VueRouter({

@@ -45,7 +45,7 @@
               <br/>
               <br/>
               <br/>
-              <p class="text-center" @click="movePage">아직 회원이 아니신가요?</p>
+              <p class="text-center" @click="movePage">이미 회원이신가요?</p>
             </div>
           </div>
           <!--accounts_forms-->

@@ -1,14 +1,18 @@
 <template>
-    <b-container class="bv-example-row mt-3" v-if="userInfo">
+  <div style="    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;height:80%">
+    <b-container class="mt-3" v-if="userInfo" >
       <b-row>
-        <b-col>
-          <b-alert variant="secondary" show><h3>정보수정</h3></b-alert>
-        </b-col>
       </b-row>
       <b-row>
         <b-col></b-col>
         <b-col cols="8">
-          <b-card class="text-center mt-3" style="max-width: 40rem" align="left">
+          <b-card class="text-center mt-3" style= "max-width: 50rem; height: 40vh;" align="left">
+            <h2>정보 수정</h2>
+            <br/>
+            <br/>
             <b-form class="text-left">
               <b-form-group label="아이디:" label-for="userid">
                 <b-form-input
@@ -39,14 +43,17 @@
                   @keyup.enter="confirm"
                 ></b-form-input>
               </b-form-group>
-              <b-button type="button" variant="success" class="m-1" @click="modify">수정</b-button>
+              <br/>
+              <br/>
+              <button type="button" class="btn register_btn w-100" @click="modify">수정</button>
             </b-form>
           </b-card>
         </b-col>
         <b-col></b-col>
       </b-row>
     </b-container>
-  </template>
+  </div>
+</template>
   
   <script>
   import { mapState } from "vuex";
@@ -93,5 +100,11 @@
   };
   </script>
   
-  <style></style>
+<style scoped>
+  button{
+  color: #FCFAF1;
+  background-color: #5F403B;
+  border-block-color: #5F403B;
+  }  
+</style>
   

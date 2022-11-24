@@ -2,19 +2,21 @@
     <b-container class="bv-example-row mt-3">
       <b-row>
         <b-col>
-          <b-alert show><h3>글보기</h3></b-alert>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <h1>글보기</h1>
         </b-col>
       </b-row>
       <b-row class="mb-1">
-        <b-col class="text-left">
-          <b-button variant="outline-primary" @click="moveList">목록</b-button>
-        </b-col>
+        <button @click="moveList" class="mx-3">목록</button>
         <b-col class="text-right" v-if="userInfo.userid === qna.userid">
           <b-button variant="outline-info" size="sm" @click="moveModifyQna" class="mr-2">글수정</b-button>
           <b-button variant="outline-danger" size="sm" @click="deleteQna">글삭제</b-button>
         </b-col>
       </b-row>
-      <b-row class="mb-1">
+      <b-row class="mb-5">
         <b-col>
           <b-card
           :header-html="`<h3>${qna.qnano}.
@@ -30,6 +32,7 @@
         </b-col>
       </b-row>
       <!--답글 목록-->
+
     <div v-if="userInfo.role === 'admin' || userInfo.userid === qna.userid">
       <b-row>
         <b-col>
@@ -182,10 +185,19 @@
   };
   </script>
   
-  <style scope>
+  <style scoped>
+
+   button{
+    color: #FCFAF1;
+    background-color: #5F403B;
+    border-block-color: #5F403B;
+    width: 20%;
+  }  
+
   .tdClass {
     width: 50px;
     text-align: center;
   }
+
   </style>
   

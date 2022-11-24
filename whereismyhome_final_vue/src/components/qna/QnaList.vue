@@ -2,12 +2,17 @@
     <b-container class="bv-example-row mt-3">
       <b-row>
         <b-col>
-          <b-alert show><h3>글목록</h3></b-alert>
+          <!-- <b-alert show><h3>글목록</h3></b-alert> -->
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <h1>글 목록</h1>
         </b-col>
       </b-row>
       <b-row class="mb-1">
         <b-col class="text-right">
-          <b-button variant="outline-primary" @click="moveWrite()">글쓰기</b-button>
+          <b-button type="button" @click="moveWrite()">글쓰기</b-button>
         </b-col>
       </b-row>
       <b-row>
@@ -72,7 +77,13 @@
   };
   </script>
   
-  <style scope>
+  <style scoped>
+ button{
+  color: #FCFAF1;
+  background-color: #5F403B;
+  border-block-color: #5F403B;
+  width: 10%;
+}   
   .tdClass {
     width: 50px;
     text-align: center;

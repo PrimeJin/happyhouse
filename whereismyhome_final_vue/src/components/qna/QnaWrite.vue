@@ -2,7 +2,11 @@
     <b-container class="bv-example-row mt-3">
       <b-row>
         <b-col>
-          <b-alert show><h3>글작성</h3></b-alert>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <h1>글 작성</h1>
         </b-col>
       </b-row>
       <qna-input-item type="register" />

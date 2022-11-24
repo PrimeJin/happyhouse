@@ -5,17 +5,18 @@
     /* justify-content: space-around; */
     width: 100%;
     grid-template-columns: 1fr 2fr 1fr;">
-        <ul></ul>
+        <ul>
+        </ul>
         <ul class="navbar-nav mx-auto">
-          <li class="nav-item">
+          <li class="nav-item" id="category">
             <router-link :to="{ name: 'main' }" class="m-2 nav-link">
-              <b-icon icon="house-door" font-scale="3"></b-icon>
+              <!-- <b-icon icon="house-door" font-scale="3"></b-icon> -->
               메인
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="category">
             <router-link :to="{ name: 'qna' }" class="m-2 nav-link">
-              <b-icon icon="question-square" font-scale="3"></b-icon>
+              <!-- <b-icon icon="question-square" font-scale="3"></b-icon> -->
               QnA
             </router-link>
           </li>
@@ -23,42 +24,41 @@
             <router-link :to="{ name: 'main' }">
               <b-img
                 style="padding: 1em"
-                :src="require('@/assets/logo.png')"
+                :src="require('@/assets/basketlogo.png')"
                 id="logo"
                 class="d-inline-block align-top"
                 alt="logo"
               ></b-img>
             </router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item" id="category">
             <router-link :to="{ name: 'house' }" class="m-2 nav-link">
-              <b-icon icon="house-fill" font-scale="3"></b-icon>
+              <!-- <b-icon icon="house-fill" font-scale="3"></b-icon> -->
               아파트정보
             </router-link>
           </li>
-          <li class="nav-item">
-            <router-link :to="{ name: 'todo' }" class="m-2 nav-link">
-              <b-icon icon="calendar-check" font-scale="3"></b-icon>
-              TodoList
+          <li class="nav-item" id="category">
+            <router-link :to="{ name: 'checklist' }" class="m-2 nav-link">
+              <!-- <b-icon icon="calendar-check" font-scale="3"></b-icon> -->
+              체크리스트
             </router-link>
           </li>
         </ul>
         <!-- after login -->
         <b-navbar-nav class="ml-auto" v-if="userInfo" style="border-top: 0px; border-bottom: 0px;">
           <b-nav-item class="align-self-center">
-            <b-avatar variant="primary" v-text="userInfo.userid.charAt(0).toUpperCase()"></b-avatar>
+            <b-avatar variant="light" v-text="userInfo.userid.charAt(0).toUpperCase()"></b-avatar>
             {{ userInfo.name }}({{ userInfo.userid }})님 환영합니다.
           </b-nav-item>
-          <b-nav-item class="align-self-center">
-            <router-link :to="{ name: 'mypage' }" class="link align-self-center">내정보보기</router-link>
-          </b-nav-item>
+          <b-nav-item class="align-self-center link" @click="moveMyPage">내정보보기</b-nav-item>
           <b-nav-item class="align-self-center link" @click.prevent="onClickLogout">로그아웃</b-nav-item>
         </b-navbar-nav>
         <!-- before login -->
         <b-navbar-nav class="ml-auto" v-else style="border-top: 0px; border-bottom: 0px">
           <b-nav-item-dropdown right>
             <template #button-content>
-              <b-icon icon="people" font-scale="2"></b-icon>
+              <br/>
+              <b-icon icon="people" font-scale="3"></b-icon>
             </template>
             <b-dropdown-item href="#">
               <router-link :to="{ name: 'signUp' }" class="link">
@@ -99,6 +99,10 @@ export default {
       sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
       if (this.$route.path != "/") this.$router.push({ name: "main" });
     },
+
+    moveMyPage() {
+      this.$router.push({ name: "mypage" });
+    }
   },
 };
 </script>
@@ -106,6 +110,11 @@ export default {
 <style scoped>
 #logo {
   width: 150px;
+}
+
+#category {
+  font-size: 20px;
+  margin-top: 14px;
 }
 
 @media screen and (min-width: 768px) {

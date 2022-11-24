@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #595b83">
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #5F403B">
     <div class="container-fluid">
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav mx-auto">
@@ -10,9 +10,9 @@
             </router-link>
           </li>
           <li class="nav-item">
-            <router-link :to="{ name: 'board' }" class="m-2 nav-link">
-              <b-icon icon="journal" font-scale="3"></b-icon>
-              게시판
+            <router-link :to="{ name: 'qna' }" class="m-2 nav-link">
+              <b-icon icon="question-square" font-scale="3"></b-icon>
+              QnA
             </router-link>
           </li>
           <li class="nav-item">

@@ -2,7 +2,7 @@
   <b-card
     no-body
     class="overflow-hidden"
-    style="max-width: 540px"
+    style="color:#5F403B; max-width: 540px; border: 0px; background-color: #FCFAF1"
     @click="selectHouse"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
@@ -44,7 +44,7 @@ export default {
       // var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
       // this.map.panTo(moveLatLon);
 
-      // console.log("listRow : ", this.house);
+      console.log("listRow : ", this.house);
       this.detailHouse(this.house);
     },
     colorChange(flag) {

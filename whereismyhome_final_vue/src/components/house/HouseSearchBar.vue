@@ -1,13 +1,13 @@
 <template>
   <div>
-    <b-card no-body>
+    <b-card no-body style="background-color: #FCFAF1;">
       <b-tabs v-model="tabIndex" card>
         <b-tab title="지역 검색" :title-link-class="linkClass(0)">
           <!-- <h1>지역으로 검색하기</h1> -->
-          <b-row class="mt-4 mb-4 text-center">
+          <b-row class="mt-4 mb-4 text-center" style="border: 0px">
             <b-col class="sm-3">
               <b-form-select
-                style="border-radius: 10px"
+                style="border-radius: 10px; background-color: #ffffff"
                 v-model="sidoCode"
                 :options="sidos"
                 @change="gugunList"
@@ -15,7 +15,7 @@
             </b-col>
             <b-col class="sm-3">
               <b-form-select
-                style="border-radius: 10px"
+                style="border-radius: 10px; background-color: #ffffff"
                 v-model="gugunCode"
                 :options="guguns"
                 @change="dongList"
@@ -23,7 +23,7 @@
             </b-col>
             <b-col class="sm-3">
               <b-form-select
-                style="border-radius: 10px"
+                style="border-radius: 10px; background-color: #ffffff"
                 v-model="dongCode"
                 :options="dongs"
                 @change="searchApt"
@@ -129,6 +129,14 @@ export default {
 </script>
 
 <style scope>
+div {
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+
+}
+
 .search {
   width: 100%;
   position: relative;
@@ -137,24 +145,24 @@ export default {
 
 .searchTerm {
   width: 100%;
-  border: 3px solid #00b4cc;
+  border: 0px;
   border-right: none;
   padding: 5%;
   height: 30%;
   border-radius: 5px 0 0 5px;
   outline: none;
-  color: #9dbfaf;
+  color: #5F403B;
 }
 
 .searchTerm:focus {
-  color: #00b4cc;
+  color: #5F403B;
 }
 
 .searchButton {
   width: 10%;
   height: auto;
-  border: 1px solid #00b4cc;
-  background: #00b4cc;
+  border: 10px;
+  background: #5F403B;
   border-radius: 0 5px 5px 0;
   cursor: pointer;
 }
@@ -169,14 +177,16 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  border: 1px solid #00b4cc;
+  border: 1px solid #5F403B;
+  color: #5F403B
 }
 .rel_search > li > ul {
   text-align: center;
-  border: 1px solid #00b4cc;
+  border: 1px solid #5F403B;
   line-height: 250%;
 }
 .rel_search > li > ul:hover {
-  background-color: #37a3b1;
+  background-color: #5F403B;
+  color: #FCFAF1
 }
 </style>

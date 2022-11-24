@@ -37,6 +37,9 @@ export default {
       longitude: 126.570667,
       positions: [],
       markers: [],
+      Mmarkers: [],
+      Pmarkers: [],
+      Smarkers: [],
       clusterer: null,
       ps: null,
     };
@@ -65,7 +68,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(houseStore, ["houses", "seoulHouse"]),
+    ...mapState(houseStore, ["houses", "seoulHouse", "infraScore", "MScore", "PScore", "SScore"]),
   },
   watch: {
     houses() {
@@ -74,7 +77,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(houseStore, ["getSeoluList"]),
+    ...mapActions(houseStore, ["getSeoluList", "setMScore", "setPScore", "setSScore", "setInfraScore"]),
 
     initMap() {
       // 맵 생성
@@ -114,27 +117,69 @@ export default {
         // 지도 범위 조정
         this.map.setBounds(bounds);
 
-        // 카테고리
-        this.ps.categorySearch("BK9", this.placesSearchCB, { useMapBounds: true });
+        // 대형마트
+        this.ps.categorySearch("MT1", this.placesSearchCM, { useMapBounds: true });
+        // 어린이집, 유치원
+        this.ps.categorySearch("PS3", this.placesSearchCP, { useMapBounds: true });
+        // 지하철역
+        this.ps.categorySearch("SW8", this.placesSearchCS, { useMapBounds: true });
       }
     },
-    placesSearchCB(data, status) {
-      var infowindow = new kakao.maps.InfoWindow({ zIndex: 1 });
+    placesSearchCM(data, status) {
+      var imageSrc = require("@/assets/store.png"),
+        imageSize = new kakao.maps.Size(30, 30),
+        imageOption = { offset: new kakao.maps.Point(0, 0) };
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
       if (status === kakao.maps.services.Status.OK) {
         for (var i = 0; i < data.length; i++) {
           var marker = new kakao.maps.Marker({
             map: this.map,
+            image: markerImage,
             position: new kakao.maps.LatLng(data[i].y, data[i].x),
           });
-
-          // 마커에 클릭이벤트를 등록합니다
-          kakao.maps.event.addListener(marker, "click", function () {
-            // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-            infowindow.setContent('<div style="padding:5px;font-size:12px;">' + data[i].place_name + "</div>");
-            infowindow.open(this.map, marker);
-          });
+          this.Mmarkers.push(marker);
         }
       }
+      // this.MScore = this.Mmarkers.length;
+      if (this.Mmarkers.length > 0) this.setMScore(this.Mmarkers.length);
+    },
+    placesSearchCP(data, status) {
+      var imageSrc = require("@/assets/school.png"),
+        imageSize = new kakao.maps.Size(30, 30),
+        imageOption = { offset: new kakao.maps.Point(0, 0) };
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+      if (status === kakao.maps.services.Status.OK) {
+        for (var i = 0; i < data.length; i++) {
+          var marker = new kakao.maps.Marker({
+            map: this.map,
+            image: markerImage,
+            position: new kakao.maps.LatLng(data[i].y, data[i].x),
+          });
+          this.Pmarkers.push(marker);
+        }
+        // this.PScore = this.Pmarkers.length;
+        if (this.Pmarkers.length > 0) this.setPScore(this.Pmarkers.length);
+      }
+    },
+    placesSearchCS(data, status) {
+      var imageSrc = require("@/assets/subway.png"),
+        imageSize = new kakao.maps.Size(30, 30),
+        imageOption = { offset: new kakao.maps.Point(0, 0) };
+      var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+      if (status === kakao.maps.services.Status.OK) {
+        for (var i = 0; i < data.length; i++) {
+          var marker = new kakao.maps.Marker({
+            map: this.map,
+            image: markerImage,
+            position: new kakao.maps.LatLng(data[i].y, data[i].x),
+          });
+          this.Smarkers.push(marker);
+        }
+      }
+      // this.SScore = this.Smarkers.length;
+      if (this.Smarkers.length > 0) this.setSScore(this.Smarkers.length);
+      // console.log("개수 합산");
+      // console.log(this.SScore);
     },
     displayMarker() {
       if (this.seoulHouse.length == 0) {
@@ -202,8 +247,8 @@ export default {
   height: 100vh;
   padding: 0;
   margin: 0;
-  background: #fff;
   border-radius: 2px;
+  background-color: #FCFAF1;
   overflow-y: auto;
   -moz-border-radius: 2px;
   -webkit-border-radius: 2px;

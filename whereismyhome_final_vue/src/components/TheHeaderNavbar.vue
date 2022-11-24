@@ -11,13 +11,13 @@
           <li class="nav-item" id="category">
             <router-link :to="{ name: 'main' }" class="m-2 nav-link">
               <!-- <b-icon icon="house-door" font-scale="3"></b-icon> -->
-              메인
+              집바구니
             </router-link>
           </li>
           <li class="nav-item" id="category">
             <router-link :to="{ name: 'qna' }" class="m-2 nav-link">
               <!-- <b-icon icon="question-square" font-scale="3"></b-icon> -->
-              QnA
+              질문게시판
             </router-link>
           </li>
           <li class="nav-item">
@@ -120,6 +120,7 @@ export default {
 @media screen and (min-width: 768px) {
   .navbar .container-fluid {
     flex-direction: column;
+    height: 15vh;
   }
   .navbar .navbar-nav .nav-item {
     padding: 0.5em 1em;

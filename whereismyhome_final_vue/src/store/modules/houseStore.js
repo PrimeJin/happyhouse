@@ -10,6 +10,10 @@ const houseStore = {
     seoulHouse: [],
     keywords: [],
     house: null,
+    MScore: 0,
+    PScore: 0,
+    SScore: 0,
+    infraScore: 0,
   },
   getters: {},
   mutations: {
@@ -58,6 +62,18 @@ const houseStore = {
     },
     SET_MARKER_HOUSE(state, house) {
       state.house = house;
+    },
+    SET_MSCORE(state, MScore) {
+      state.MScore = MScore;
+    },
+    SET_PSCORE(state, PScore) {
+      state.PScore = PScore;
+    },
+    SET_SSCORE(state, SScore) {
+      state.SScore = SScore;
+    },
+    SET_INFRA_SCORE(state, infraScore) {
+      state.infraScore = infraScore;
     },
   },
   actions: {
@@ -141,6 +157,18 @@ const houseStore = {
     },
     resetHouse: ({ commit }) => {
       commit("CLEAR_APT");
+    },
+    setMScore: ({ commit }, idx) => {
+      commit("SET_MSCORE", idx);
+    },
+    setPScore: ({ commit }, idx) => {
+      commit("SET_PSCORE", idx);
+    },
+    setSScore: ({ commit }, idx) => {
+      commit("SET_SSCORE", idx);
+    },
+    setInfraScore: ({ commit }, idx) => {
+      commit("SET_INFRA_SCORE", idx);
     },
   },
 };

@@ -1,9 +1,6 @@
 <template>
-  <b-container v-if="houses && houses.length != 0" fluid="md">
+  <b-container v-if="houses && houses.length != 0" fluid="md" style="background-color: ##FCFAF1">
     <house-list-item v-for="(house, index) in houses" :key="index" :house="house" />
-  </b-container>
-  <b-container v-else fluid="md">
-    <b-col><b-alert show>주택 목록이 없습니다.</b-alert></b-col>
   </b-container>
 </template>
 

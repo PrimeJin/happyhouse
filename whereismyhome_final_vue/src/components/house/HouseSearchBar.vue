@@ -1,15 +1,54 @@
 <template>
-  <b-row class="mt-4 mb-4 text-center">
-    <b-col class="sm-3">
-      <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-select v-model="gugunCode" :options="guguns" @change="dongList"></b-form-select>
-    </b-col>
-    <b-col class="sm-3">
-      <b-form-select v-model="dongCode" :options="dongs" @change="searchApt"></b-form-select>
-    </b-col>
-  </b-row>
+  <div>
+    <b-card no-body>
+      <b-tabs v-model="tabIndex" card>
+        <b-tab title="지역 검색" :title-link-class="linkClass(0)">
+          <!-- <h1>지역으로 검색하기</h1> -->
+          <b-row class="mt-4 mb-4 text-center">
+            <b-col class="sm-3">
+              <b-form-select
+                style="border-radius: 10px"
+                v-model="sidoCode"
+                :options="sidos"
+                @change="gugunList"
+              ></b-form-select>
+            </b-col>
+            <b-col class="sm-3">
+              <b-form-select
+                style="border-radius: 10px"
+                v-model="gugunCode"
+                :options="guguns"
+                @change="dongList"
+              ></b-form-select>
+            </b-col>
+            <b-col class="sm-3">
+              <b-form-select
+                style="border-radius: 10px"
+                v-model="dongCode"
+                :options="dongs"
+                @change="searchApt"
+              ></b-form-select>
+            </b-col>
+          </b-row>
+        </b-tab>
+        <b-tab title="이름 검색" :title-link-class="linkClass(1)">
+          <!-- <h1>이름으로 검색하기</h1> -->
+          <div class="wrap">
+            <div class="search">
+              <input
+                type="text"
+                v-model="keyword"
+                @keyup="searchKeword"
+                class="searchTerm"
+                placeholder="검색어를 입력해주세요"
+              />
+              <button type="submit" class="searchButton"></button>
+            </div>
+          </div>
+        </b-tab>
+      </b-tabs>
+    </b-card>
+  </div>
 </template>
 
 <script>
@@ -23,10 +62,12 @@ export default {
       sidoCode: null,
       gugunCode: null,
       dongCode: null,
+      tabIndex: 0,
+      keyword: null,
     };
   },
   computed: {
-    ...mapState(houseStore, ["sidos", "guguns", "dongs", "houses"]),
+    ...mapState(houseStore, ["sidos", "guguns", "dongs", "houses", "keywords"]),
   },
   created() {
     this.CLEAR_SIDO_LIST();
@@ -34,7 +75,7 @@ export default {
     this.getSido();
   },
   methods: {
-    ...mapActions(houseStore, ["getSido", "getGugun", "getDong", "getHouseList"]),
+    ...mapActions(houseStore, ["getSido", "getGugun", "getDong", "getHouseList", "getSearchList"]),
     ...mapMutations(houseStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST", "CLEAR_DONG_LIST", "CLEAR_APT_LIST"]),
     gugunList() {
       this.CLEAR_GUGUN_LIST();
@@ -46,11 +87,60 @@ export default {
       this.dongCode = null;
       if (this.gugunCode) this.getDong(this.gugunCode);
     },
+    linkClass(idx) {
+      if (this.tabIndex === idx) {
+        return ["bg-primary", "text-light"];
+      } else {
+        return ["bg-light", "text-info"];
+      }
+    },
     searchApt() {
       if (this.dongCode) this.getHouseList(this.dongCode);
+    },
+    searchKeword() {
+      console.log("키업 호출");
+      console.log(this.keyword);
+      console.log(this.keywords);
+      if (this.keyword) this.getSearchList(this.keyword);
     },
   },
 };
 </script>
 
-<style></style>
+<style scope>
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #00b4cc;
+  border-right: none;
+  padding: 5%;
+  height: 30%;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #9dbfaf;
+}
+
+.searchTerm:focus {
+  color: #00b4cc;
+}
+
+.searchButton {
+  width: 10%;
+  height: auto;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+}
+
+.wrap {
+  width: 100%;
+  top: 50%;
+  left: 50%;
+}
+</style>

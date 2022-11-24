@@ -1,16 +1,22 @@
 <template>
-  <b-row
-    class="m-2"
+  <b-card
+    no-body
+    class="overflow-hidden"
+    style="max-width: 540px"
     @click="selectHouse"
     @mouseover="colorChange(true)"
     @mouseout="colorChange(false)"
     :class="{ 'mouse-over-bgcolor': isColor }"
   >
-    <b-col cols="2" class="text-center align-self-center">
-      <b-img thumbnail src="https://picsum.photos/250/250/?image=58" alt="Image 1"></b-img>
-    </b-col>
-    <b-col cols="10" class="align-self-center"> [{{ house.aptCode }}] {{ house.aptName }} </b-col>
-  </b-row>
+    <b-row no-gutters>
+      <b-col md="4">
+        <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
+      </b-col>
+      <b-col md="8">
+        <b-card-body>[{{ house.aptCode }}] {{ house.aptName }}</b-card-body>
+      </b-col>
+    </b-row>
+  </b-card>
 </template>
 
 <script>

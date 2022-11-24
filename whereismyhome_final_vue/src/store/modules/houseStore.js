@@ -1,4 +1,4 @@
-import { sidoList, gugunList, dongList, houseList } from "@/api/house.js";
+import { sidoList, gugunList, dongList, houseList, searchList } from "@/api/house.js";
 
 const houseStore = {
   namespaced: true,
@@ -7,6 +7,7 @@ const houseStore = {
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
     houses: [],
+    keywords: [],
     house: null,
   },
   getters: {},
@@ -41,6 +42,9 @@ const houseStore = {
     },
     SET_HOUSE_LIST(state, houses) {
       state.houses = houses;
+    },
+    SET_SEARCH_LIST(state, keywords) {
+      state.keywords = keywords;
     },
     SET_DETAIL_HOUSE(state, house) {
       state.house = house;
@@ -85,7 +89,6 @@ const houseStore = {
       );
     },
     getHouseList: ({ commit }, dongCode) => {
-      //const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
       const params = {
         dong: dongCode,
       };
@@ -93,6 +96,20 @@ const houseStore = {
         params,
         ({ data }) => {
           commit("SET_HOUSE_LIST", data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    getSearchList: ({ commit }, keyword) => {
+      const params = {
+        keyword: keyword,
+      };
+      searchList(
+        params,
+        ({ data }) => {
+          commit("SET_SEARCH_LIST", data);
         },
         (error) => {
           console.log(error);

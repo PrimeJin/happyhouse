@@ -33,9 +33,9 @@
               <b-icon icon="house-fill" animation="fade" font-scale="2"></b-icon>
               아파트정보
             </router-link>
-            <router-link :to="{ name: 'todo' }" class="link">
-              <b-icon icon="calendar-check" animation="fade" font-scale="2"></b-icon>
-              TodoList
+            <router-link :to="{ name: 'qna' }" class="link">
+              <b-icon icon="question-square" animation="fade" font-scale="2"></b-icon>
+              QnA
             </router-link>
           </b-nav-item>
         </b-navbar-nav>

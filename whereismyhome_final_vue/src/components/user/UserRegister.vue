@@ -1,8 +1,9 @@
 <template>
+<div class="background">
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert variant="secondary" show><h3>로그인</h3></b-alert>
+        <b-alert variant="secondary" show><h3>회원가입</h3></b-alert>
       </b-col>
     </b-row>
     <b-row>
@@ -15,7 +16,7 @@
                 id="userid"
                 v-model="userid"
                 required
-                placeholder="아이디 입력...."
+                placeholder="아이디 입력"
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
@@ -25,7 +26,7 @@
                 id="password"
                 v-model="password"
                 required
-                placeholder="비밀번호 입력...."
+                placeholder="비밀번호 입력"
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
@@ -35,7 +36,7 @@
                 id="name"
                 v-model="name"
                 required
-                placeholder="이름 입력...."
+                placeholder="이름 입력"
                 @keyup.enter="confirm"
               ></b-form-input>
             </b-form-group>
@@ -46,6 +47,7 @@
       <b-col></b-col>
     </b-row>
   </b-container>
+</div>
 </template>
 
 <script>
@@ -80,5 +82,8 @@ export default {
   },
 };
 </script>
-
-<style></style>
+<style scoped>
+  .background {
+    background-color: #b7e6ed;
+  }
+</style>

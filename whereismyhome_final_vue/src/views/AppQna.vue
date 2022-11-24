@@ -1,8 +1,7 @@
 <template>
-    <b-container class="bv-example-row mt-3 text-center">
-      <h3 class="underline-hotpink"><b-icon icon="question-square"></b-icon> QnA Service</h3>
-      <router-view></router-view>
-    </b-container>
+  <div class="text-center container-fluid" style="height: calc(100vh - 102px);">
+    <router-view></router-view>
+  </div>
   </template>
   <script>
   export default {

@@ -1,7 +1,11 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #5F403B">
     <div class="container-fluid">
-      <div class="collapse navbar-collapse" id="navbarNav">
+      <div class="collapse" id="navbarNav" style="display: grid;
+    /* justify-content: space-around; */
+    width: 100%;
+    grid-template-columns: 1fr 2fr 1fr;">
+        <ul></ul>
         <ul class="navbar-nav mx-auto">
           <li class="nav-item">
             <router-link :to="{ name: 'main' }" class="m-2 nav-link">
@@ -40,7 +44,7 @@
           </li>
         </ul>
         <!-- after login -->
-        <b-navbar-nav class="ml-auto" v-if="userInfo" style="border-top: 0px; border-bottom: 0px">
+        <b-navbar-nav class="ml-auto" v-if="userInfo" style="border-top: 0px; border-bottom: 0px;">
           <b-nav-item class="align-self-center">
             <b-avatar variant="primary" v-text="userInfo.userid.charAt(0).toUpperCase()"></b-avatar>
             {{ userInfo.name }}({{ userInfo.userid }})님 환영합니다.

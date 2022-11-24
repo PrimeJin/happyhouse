@@ -16,4 +16,5 @@ public interface HouseDao {
 	List<House> getDongInGugun(String gugun) throws SQLException;
 	List<House> getAptInDong(String dong) throws SQLException;
 	List<SearchList> getSearchList(String keyword) throws SQLException;
+	List<House> getSeoulAptList() throws SQLException;
 }

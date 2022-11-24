@@ -39,6 +39,11 @@ export default {
   methods: {
     ...mapActions(houseStore, ["detailHouse"]),
     selectHouse() {
+      // var latitude = this.house.lat;
+      // var longitude = this.house.lng;
+      // var moveLatLon = new kakao.maps.LatLng(latitude, longitude);
+      // this.map.panTo(moveLatLon);
+
       // console.log("listRow : ", this.house);
       this.detailHouse(this.house);
     },

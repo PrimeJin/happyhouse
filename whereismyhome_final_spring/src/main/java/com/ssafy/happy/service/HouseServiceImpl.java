@@ -41,4 +41,9 @@ public class HouseServiceImpl implements HouseService {
 		return sqlSession.getMapper(HouseDao.class).getSearchList(keyword);
 	}
 
+	@Override
+	public List<House> getSeoulAptList() throws Exception {
+		return sqlSession.getMapper(HouseDao.class).getSeoulAptList();
+	}
+
 }

@@ -18,8 +18,12 @@ function houseList(params, success, fail) {
   house.get(`/map/apt`, { params: params }).then(success).catch(fail);
 }
 
+function seoulList(success, fail) {
+  house.get(`/map/seoul`).then(success).catch(fail);
+}
+
 function searchList(params, success, fail) {
   house.get(`/map/search`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, dongList, houseList, searchList };
+export { sidoList, gugunList, dongList, houseList, seoulList, searchList };

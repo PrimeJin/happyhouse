@@ -1,4 +1,4 @@
-import { sidoList, gugunList, dongList, houseList, searchList } from "@/api/house.js";
+import { sidoList, gugunList, dongList, houseList, seoulList, searchList } from "@/api/house.js";
 
 const houseStore = {
   namespaced: true,
@@ -7,6 +7,7 @@ const houseStore = {
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
     houses: [],
+    seoulHouse: [],
     keywords: [],
     house: null,
   },
@@ -45,6 +46,9 @@ const houseStore = {
     },
     SET_HOUSE_LIST(state, houses) {
       state.houses = houses;
+    },
+    SET_SEOUL_LIST(state, seoulHouse) {
+      state.seoulHouse = seoulHouse;
     },
     SET_SEARCH_LIST(state, keywords) {
       state.keywords = keywords;
@@ -113,6 +117,16 @@ const houseStore = {
         params,
         ({ data }) => {
           commit("SET_SEARCH_LIST", data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+    getSeoluList: ({ commit }) => {
+      seoulList(
+        ({ data }) => {
+          commit("SET_SEOUL_LIST", data);
         },
         (error) => {
           console.log(error);

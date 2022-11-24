@@ -12,4 +12,5 @@ public interface HouseService {
 	List<House> getDongInGugun(String gugun) throws Exception;
 	List<House> getAptInDong(String dong) throws Exception;
 	List<SearchList> getSearchList(String keyword) throws Exception;
+	List<House> getSeoulAptList() throws Exception;
 }

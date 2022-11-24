@@ -107,6 +107,12 @@ public class HouseController {
 	public ResponseEntity<List<House>> apt(@RequestParam("dong") String dong) throws Exception {
 		return new ResponseEntity<List<House>>(haHouseService.getAptInDong(dong), HttpStatus.OK);
 	}
+
+	@GetMapping("/seoul")
+	public ResponseEntity<List<House>> seoul() throws Exception {
+		System.out.println("seoul - 호출");
+		return new ResponseEntity<List<House>>(haHouseService.getSeoulAptList(), HttpStatus.OK);
+	}
 	
 	@GetMapping("/search")
 	public ResponseEntity<List<SearchList>> keyword(@RequestParam("keyword") String keyword) throws Exception {

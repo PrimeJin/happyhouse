@@ -12,12 +12,14 @@
         </ul>
       </nav>
     </div>
+    <house-detail />
   </div>
 </template>
 
 <script>
 import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 import HouseList from "@/components/house/HouseList.vue";
+import HouseDetail from "@/components/house/HouseDetail.vue";
 import { mapState } from "vuex";
 
 const houseStore = "houseStore";
@@ -27,6 +29,7 @@ export default {
   components: {
     HouseSearchBar,
     HouseList,
+    HouseDetail,
   },
   data() {
     return {
@@ -142,6 +145,7 @@ export default {
   height: 92vh;
   padding: 0;
   margin: 0;
+  z-index: 0;
 }
 
 .container {
@@ -150,7 +154,7 @@ export default {
   left: 0%;
   padding: 0;
   margin: 0;
-  width: 20%;
+  width: 17vw;
   z-index: 100;
   clear: both;
 }

@@ -25,6 +25,9 @@ const houseStore = {
       state.houses = [];
       state.house = null;
     },
+    CLEAR_APT(state) {
+      state.house = null;
+    },
     SET_SIDO_LIST(state, sidos) {
       sidos.forEach((sido) => {
         state.sidos.push({ value: sido.sidoCode, text: sido.sidoName });
@@ -121,6 +124,9 @@ const houseStore = {
     },
     detailMarkerHouse: ({ commit }, house) => {
       commit("SET_MARKER_HOUSE", house);
+    },
+    resetHouse: ({ commit }) => {
+      commit("CLEAR_APT");
     },
   },
 };

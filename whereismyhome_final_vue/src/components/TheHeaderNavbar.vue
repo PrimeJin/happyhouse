@@ -1,47 +1,46 @@
 <template>
-  <div>
-    <b-navbar toggleable="lg" type="dark" variant="dark">
-      <b-navbar-brand href="#">
-        <router-link :to="{ name: 'main' }">
-          <b-img
-            :src="require('@/assets/ssafy_logo.png')"
-            id="logo"
-            class="d-inline-block align-top"
-            alt="logo"
-          ></b-img>
-        </router-link>
-      </b-navbar-brand>
-
-      <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
-
-      <b-collapse id="nav-collapse" is-nav>
-        <b-navbar-nav>
-          <b-nav-item href="#">
-            <router-link :to="{ name: 'main' }" class="link">
-              <b-icon icon="house-door" animation="fade" font-scale="2"></b-icon>
+  <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #595b83">
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item">
+            <router-link :to="{ name: 'main' }" class="m-2 nav-link">
+              <b-icon icon="house-door" font-scale="3"></b-icon>
               메인
             </router-link>
-            <!-- <router-link :to="{ name: 'insta' }" class="m-2 link">
-              <b-icon icon="instagram" animation="fade" font-scale="2"></b-icon>
-              인스타그램
-            </router-link> -->
-            <router-link :to="{ name: 'board' }" class="m-2 link">
-              <b-icon icon="journal" animation="fade" font-scale="2"></b-icon>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'board' }" class="m-2 nav-link">
+              <b-icon icon="journal" font-scale="3"></b-icon>
               게시판
             </router-link>
-            <router-link :to="{ name: 'house' }" class="m-2 link">
-              <b-icon icon="house-fill" animation="fade" font-scale="2"></b-icon>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'main' }">
+              <b-img
+                style="padding: 1em"
+                :src="require('@/assets/logo.png')"
+                id="logo"
+                class="d-inline-block align-top"
+                alt="logo"
+              ></b-img>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'house' }" class="m-2 nav-link">
+              <b-icon icon="house-fill" font-scale="3"></b-icon>
               아파트정보
             </router-link>
-            <router-link :to="{ name: 'qna' }" class="link">
-              <b-icon icon="question-square" animation="fade" font-scale="2"></b-icon>
-              QnA
+          </li>
+          <li class="nav-item">
+            <router-link :to="{ name: 'todo' }" class="m-2 nav-link">
+              <b-icon icon="calendar-check" font-scale="3"></b-icon>
+              TodoList
             </router-link>
-          </b-nav-item>
-        </b-navbar-nav>
-
+          </li>
+        </ul>
         <!-- after login -->
-        <b-navbar-nav class="ml-auto" v-if="userInfo">
+        <b-navbar-nav class="ml-auto" v-if="userInfo" style="border-top: 0px; border-bottom: 0px">
           <b-nav-item class="align-self-center">
             <b-avatar variant="primary" v-text="userInfo.userid.charAt(0).toUpperCase()"></b-avatar>
             {{ userInfo.name }}({{ userInfo.userid }})님 환영합니다.
@@ -52,7 +51,7 @@
           <b-nav-item class="align-self-center link" @click.prevent="onClickLogout">로그아웃</b-nav-item>
         </b-navbar-nav>
         <!-- before login -->
-        <b-navbar-nav class="ml-auto" v-else>
+        <b-navbar-nav class="ml-auto" v-else style="border-top: 0px; border-bottom: 0px">
           <b-nav-item-dropdown right>
             <template #button-content>
               <b-icon icon="people" font-scale="2"></b-icon>
@@ -67,9 +66,9 @@
             </b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
-      </b-collapse>
-    </b-navbar>
-  </div>
+      </div>
+    </div>
+  </nav>
 </template>
 
 <script>
@@ -102,10 +101,28 @@ export default {
 
 <style scoped>
 #logo {
-  width: 120px;
+  width: 150px;
 }
 
-.link {
-  text-decoration: none;
+@media screen and (min-width: 768px) {
+  .navbar .container-fluid {
+    flex-direction: column;
+  }
+  .navbar .navbar-nav .nav-item {
+    padding: 0.5em 1em;
+    display: flex;
+  }
+  .navbar-nav {
+    border-bottom: 2px solid #fff;
+  }
+}
+
+.navbar .navbar-nav .nav-link {
+  color: rgb(255, 255, 255);
+  font-size: 1.1em;
+}
+.navbar .navbar-nav {
+  border-top: 2px solid rgb(255, 255, 255);
+  margin-top: 0.5em;
 }
 </style>

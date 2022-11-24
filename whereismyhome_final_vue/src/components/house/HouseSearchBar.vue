@@ -38,11 +38,20 @@
               <input
                 type="text"
                 v-model="keyword"
-                @keyup="searchKeword"
+                @keyup="searchKeywordList"
                 class="searchTerm"
                 placeholder="검색어를 입력해주세요"
               />
-              <button type="submit" class="searchButton"></button>
+              <button @click="searchAptKeyword" class="searchButton"></button>
+            </div>
+            <div class="rel_search" v-if="keyword && keywords.length && select != 0">
+              <li v-for="(keyword, index) in keywords" :key="index" :house="keyword">
+                <ul @click="selectSearchKeyword(keyword)">
+                  {{
+                    keyword.totalName
+                  }}
+                </ul>
+              </li>
             </div>
           </div>
         </b-tab>
@@ -64,6 +73,8 @@ export default {
       dongCode: null,
       tabIndex: 0,
       keyword: null,
+      searchKeyword: null,
+      select: false,
     };
   },
   computed: {
@@ -97,11 +108,21 @@ export default {
     searchApt() {
       if (this.dongCode) this.getHouseList(this.dongCode);
     },
-    searchKeword() {
-      console.log("키업 호출");
+    searchKeywordList() {
+      // console.log("키업 호출");
       console.log(this.keyword);
-      console.log(this.keywords);
+      // console.log(this.keywords);
       if (this.keyword) this.getSearchList(this.keyword);
+      this.select = true;
+    },
+    selectSearchKeyword(searchKeyword) {
+      // console.log(searchKeyword);
+      this.searchKeyword = searchKeyword.dongCode;
+      this.keyword = searchKeyword.totalName;
+      this.select = false;
+    },
+    searchAptKeyword() {
+      if (this.searchKeyword) this.getHouseList(this.searchKeyword);
     },
   },
 };
@@ -142,5 +163,20 @@ export default {
   width: 100%;
   top: 50%;
   left: 50%;
+}
+
+.rel_search {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #00b4cc;
+}
+.rel_search > li > ul {
+  text-align: center;
+  border: 1px solid #00b4cc;
+  line-height: 250%;
+}
+.rel_search > li > ul:hover {
+  background-color: #37a3b1;
 }
 </style>

@@ -13,7 +13,9 @@
         <b-card-img src="https://picsum.photos/400/400/?image=20" alt="Image" class="rounded-0"></b-card-img>
       </b-col>
       <b-col md="8">
-        <b-card-body>[{{ house.aptCode }}] {{ house.aptName }}</b-card-body>
+        <b-card-body @click="selectHouse">
+          <strong>[{{ house.aptCode }}] {{ house.aptName }}</strong>
+        </b-card-body>
       </b-col>
     </b-row>
   </b-card>
@@ -37,7 +39,7 @@ export default {
   methods: {
     ...mapActions(houseStore, ["detailHouse"]),
     selectHouse() {
-      console.log("listRow : ", this.house);
+      // console.log("listRow : ", this.house);
       this.detailHouse(this.house);
     },
     colorChange(flag) {
